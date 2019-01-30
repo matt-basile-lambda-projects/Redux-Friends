@@ -1,4 +1,4 @@
-import {FETCH_FRIENDS_FAIL, FETCH_FRIENDS_START,FETCH_FRIENDS_SUCCESS} from "../actions"
+import {FETCH_FRIENDS_FAIL, FETCH_FRIENDS_START, FETCH_FRIENDS_SUCCESS} from "../actions"
 
 const initialState ={
     fetchingFriends: false,
