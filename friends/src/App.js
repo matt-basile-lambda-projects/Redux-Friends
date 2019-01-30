@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import Friends from "./components/Friends"
+import Friends from "./components/Friends";
+import AddFriendForm from "./components/AddFriendForm"
 import {connect} from "react-redux";
-import{getFriends} from "./actions";
+import{getFriends, postAFriend} from "./actions";
+
 
 class App extends Component {
   constructor(props){
@@ -17,6 +19,7 @@ class App extends Component {
       <div className="App">
         {this.props.friends.map(friend => <Friends key={friend.name} friend={friend}/>
         )}
+        <AddFriendForm postAFriend={this.props.postAFriend}/>
       </div>
     );
   }
@@ -25,11 +28,17 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   friends: state.friendsReducer.friends,
+  updatingFriend: state.postFriendsReducer.updatingFriend,
+  friendUpdated: state.postFriendsReducer.friendUpdated,
+  fetchingFriends: state.friendsReducer.fetchingFriends,
+  friendsFetched: state.friendsReducer.friendsFetched,
+  error: state.friendsReducer.error,
 });
 
 export default connect(
    mapStateToProps,
   {
-    getFriends
+    getFriends,
+    postAFriend
   }
 )(App);
