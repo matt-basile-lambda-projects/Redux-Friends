@@ -29,12 +29,12 @@ class App extends Component {
 
 
 const mapStateToProps = state => ({
-  friends: state.friendsReducer.friends,
-  updatingFriend: state.postFriendsReducer.updatingFriend,
-  friendUpdated: state.postFriendsReducer.friendUpdated,
-  fetchingFriends: state.friendsReducer.fetchingFriends,
-  friendsFetched: state.friendsReducer.friendsFetched,
-  error: state.friendsReducer.error,
+  friends: state.friends,
+  updatingFriend: state.updatingFriend,
+  friendUpdated: state.friendUpdated,
+  fetchingFriends: state.fetchingFriends,
+  friendsFetched: state.friendsFetched,
+  error: state.error,
 });
 
 export default connect(
