@@ -17,9 +17,11 @@ class App extends Component {
     console.log(this.props.friends)
     return (
       <div className="App">
-        {this.props.friends.map(friend => <Friends key={friend.name} friend={friend}/>
-        )}
-        <AddFriendForm postAFriend={this.props.postAFriend}/>
+      {this.props.updatingFriend || this.props.fetchingFriends ? (<h1>Loading Friends...</h1>) : (
+        this.props.friends.map(friend => <Friends key={friend.name} friend={friend}/>
+        )
+      )}
+        <AddFriendForm getFriends={this.props.getFriends}postAFriend={this.props.postAFriend}/>
       </div>
     );
   }
