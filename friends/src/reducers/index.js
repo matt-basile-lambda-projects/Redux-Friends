@@ -3,7 +3,10 @@ import {POST_NEW_FRIEND,
         POST_FRIEND_FAIL,
         FETCH_FRIENDS_FAIL,
         FETCH_FRIENDS_START,
-        FETCH_FRIENDS_SUCCESS
+        FETCH_FRIENDS_SUCCESS,
+        DELETE_FRIEND,
+        DELETE_FRIEND_FAIL,
+        DELETE_FRIEND_SUCCESS
  } from '../actions'
 
 
@@ -20,6 +23,7 @@ const initialState ={
     error: null,
     fetchingFriends: false,
     friendsFetched: false,
+    isDeletingFriend: false
   }  
 
 
@@ -30,6 +34,7 @@ const friendsReducer = (state=initialState, action)=>{
             ...state,
             updatingFriend: true,
             error: '',
+            fetchingFriends: false,
         };
         case POST_FRIEND_SUCCESS:
         return{
@@ -50,7 +55,8 @@ const friendsReducer = (state=initialState, action)=>{
         return{
             ...state,
             error: '',
-            fetchingFriends: true
+            fetchingFriends: true,
+            
         };
         case FETCH_FRIENDS_SUCCESS:
         return{
@@ -58,14 +64,35 @@ const friendsReducer = (state=initialState, action)=>{
             error: '',
             fetchingFriends: false,
             friends: action.payload,
-            friendsFetched: true
+            friendsFetched: true,
+            isDeletingFriend: false,
         };
         case FETCH_FRIENDS_FAIL:
         return{
             ...state,
             error: action.payload,
             friendsFetched: false,
-            fetchingFriends: false
+            fetchingFriends: false,
+            isDeletingFriend: false,
+        };
+        case DELETE_FRIEND:
+        return{
+            ...state,
+            error: '',
+            isDeletingFriend: true
+        };
+        case DELETE_FRIEND_SUCCESS:
+        return{
+            ...state,
+            error: '',
+            friends: action.payload,
+            isDeletingFriend: true
+        };
+        case DELETE_FRIEND_FAIL:
+        return{
+            ...state,
+            error: action.payload,
+            isDeletingFriend: false,
         };
         default:
         return state

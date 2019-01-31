@@ -22,13 +22,18 @@ class AddFriendForm extends React.Component {
         console.log('Submitting')
         e.preventDefault();
         this.props.postAFriend(this.state.newFriend);
-        this.props.getFriends()
+        
         this.setState({newFriend: {
                 name: '',
                 age: null,
                 email: '',
         }})
         e.target.reset();
+    }
+    componentDidUpdate(prevProps){
+        if(prevProps.friends.length !== this.props.friends.length){
+            // this.props.getFriends()
+        }
     }
     render(){
     return(
